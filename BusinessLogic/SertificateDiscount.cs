@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     /// <summary>
     /// Реализация сертификатной скидки
     /// </summary>
-    class SertificateDiscount : IDiscount
+    public class SertificateDiscount : IDiscount
     {
         /// <summary>
         /// Поле значения скидки, по умолчанию 0
         /// </summary>
         private int _discountValue = 0;
-        /// <summary>
-        /// Поле значения категории товаров, на которую распространяется скидка, по умолчанию All 
-        /// </summary>
-        private Category _categoryOfProduct = Category.All;
         /// <summary>
         /// Свойство значения скидки, ожидаемое значение не меньше 0
         /// </summary>
@@ -34,17 +26,13 @@ namespace BusinessLogic
             }
         }
         /// <summary>
-        /// Свойство категории товара
+        /// Свойство категории товара, на которую распространяется скидка, по умолчанию All
         /// </summary>
-        public Category CategoryOfProduct
-        {
-            get { return _categoryOfProduct; }
-            set { return value; }
-        }
+        public Category CategoryOfProduct { get; set; } = Category.All;
         /// <summary>
         /// Метод, рассчитывающий итоговую цену товара с учетом скидки
         /// </summary>
-        /// <param name="product">Экземпляр продукта, для расчета с учетом скидки</param>
+        /// <param name="product">Экземпляр продукта, для расчета цены с учетом скидки</param>
         public void DoDiscount(Product product)
         { 
             if (DiscountValue <= product.BasePrice)

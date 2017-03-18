@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic
+﻿namespace BusinessLogic
 {
     /// <summary>
     /// Интерфейс Скидки
     /// </summary>
-    interface IDiscount
+    public interface IDiscount
     {
         /// <summary>
         /// Свойство значения скидки

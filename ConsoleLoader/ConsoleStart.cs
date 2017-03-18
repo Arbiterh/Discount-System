@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleLoader
 {
-    class ConsoleStart
+    public class ConsoleStart
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+
         }
     }
 }
