@@ -35,7 +35,8 @@ namespace BusinessLogic
         /// <param name="product">Экземпляр продукта, для расчета цены с учетом скидки</param>
         public void DoDiscount(Product product)
         {
-            product.ResultPrice = product.BasePrice * (1 - (DiscountValue * 0.01));
+            if (CategoryOfProduct == product.Type || CategoryOfProduct == Category.All)
+                product.ResultPrice = product.BasePrice * (1 - (DiscountValue * 0.01));
         }
     }
 }

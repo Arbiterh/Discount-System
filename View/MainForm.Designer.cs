@@ -29,127 +29,62 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.DiscountGroupBox = new System.Windows.Forms.GroupBox();
-            this.DiscountDataGridView = new System.Windows.Forms.DataGridView();
-            this.AddDiscountButton = new System.Windows.Forms.Button();
-            this.RemoveDiscountButton = new System.Windows.Forms.Button();
-            this.ProductGroupBox = new System.Windows.Forms.GroupBox();
-            this.ProductDataGridView = new System.Windows.Forms.DataGridView();
-            this.discountValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryOfProductDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDiscountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.busketGroupBox = new System.Windows.Forms.GroupBox();
+            this.cartDataGridView = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiscountGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DiscountDataGridView)).BeginInit();
-            this.ProductGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iDiscountBindingSource)).BeginInit();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.discountGroupBox = new System.Windows.Forms.GroupBox();
+            this.resultCheckingDiscountNumberLabel = new System.Windows.Forms.Label();
+            this.discountNumberMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.addFromProductListButton = new System.Windows.Forms.Button();
+            this.removeFromCartButton = new System.Windows.Forms.Button();
+            this.resultButton = new System.Windows.Forms.Button();
+            this.clearCartButton = new System.Windows.Forms.Button();
+            this.showDiscountFormButton = new System.Windows.Forms.Button();
+            this.cartSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.cartOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.busketGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cartDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            this.discountGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // DiscountGroupBox
+            // busketGroupBox
             // 
-            this.DiscountGroupBox.Controls.Add(this.DiscountDataGridView);
-            this.DiscountGroupBox.Location = new System.Drawing.Point(12, 12);
-            this.DiscountGroupBox.Name = "DiscountGroupBox";
-            this.DiscountGroupBox.Size = new System.Drawing.Size(246, 221);
-            this.DiscountGroupBox.TabIndex = 0;
-            this.DiscountGroupBox.TabStop = false;
-            this.DiscountGroupBox.Text = "Discount List";
+            this.busketGroupBox.Controls.Add(this.cartDataGridView);
+            this.busketGroupBox.Location = new System.Drawing.Point(12, 27);
+            this.busketGroupBox.Name = "busketGroupBox";
+            this.busketGroupBox.Size = new System.Drawing.Size(449, 234);
+            this.busketGroupBox.TabIndex = 0;
+            this.busketGroupBox.TabStop = false;
+            this.busketGroupBox.Text = "Your shopping cart";
             // 
-            // DiscountDataGridView
+            // cartDataGridView
             // 
-            this.DiscountDataGridView.AllowUserToAddRows = false;
-            this.DiscountDataGridView.AllowUserToDeleteRows = false;
-            this.DiscountDataGridView.AutoGenerateColumns = false;
-            this.DiscountDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DiscountDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.discountValueDataGridViewTextBoxColumn,
-            this.categoryOfProductDataGridViewTextBoxColumn});
-            this.DiscountDataGridView.DataSource = this.iDiscountBindingSource;
-            this.DiscountDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DiscountDataGridView.Location = new System.Drawing.Point(3, 16);
-            this.DiscountDataGridView.Name = "DiscountDataGridView";
-            this.DiscountDataGridView.ReadOnly = true;
-            this.DiscountDataGridView.Size = new System.Drawing.Size(240, 202);
-            this.DiscountDataGridView.TabIndex = 0;
-            this.DiscountDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // AddDiscountButton
-            // 
-            this.AddDiscountButton.Location = new System.Drawing.Point(15, 236);
-            this.AddDiscountButton.Name = "AddDiscountButton";
-            this.AddDiscountButton.Size = new System.Drawing.Size(79, 23);
-            this.AddDiscountButton.TabIndex = 1;
-            this.AddDiscountButton.Text = "Add Discount";
-            this.AddDiscountButton.UseVisualStyleBackColor = true;
-            this.AddDiscountButton.Click += new System.EventHandler(this.AddDiscountButton_Click);
-            // 
-            // RemoveDiscountButton
-            // 
-            this.RemoveDiscountButton.Location = new System.Drawing.Point(158, 236);
-            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
-            this.RemoveDiscountButton.Size = new System.Drawing.Size(100, 23);
-            this.RemoveDiscountButton.TabIndex = 2;
-            this.RemoveDiscountButton.Text = "Remove Discount";
-            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
-            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
-            // 
-            // ProductGroupBox
-            // 
-            this.ProductGroupBox.Controls.Add(this.ProductDataGridView);
-            this.ProductGroupBox.Location = new System.Drawing.Point(346, 12);
-            this.ProductGroupBox.Name = "ProductGroupBox";
-            this.ProductGroupBox.Size = new System.Drawing.Size(269, 221);
-            this.ProductGroupBox.TabIndex = 3;
-            this.ProductGroupBox.TabStop = false;
-            this.ProductGroupBox.Text = "Product List";
-            // 
-            // ProductDataGridView
-            // 
-            this.ProductDataGridView.AllowUserToAddRows = false;
-            this.ProductDataGridView.AllowUserToDeleteRows = false;
-            this.ProductDataGridView.AutoGenerateColumns = false;
-            this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cartDataGridView.AllowUserToAddRows = false;
+            this.cartDataGridView.AllowUserToDeleteRows = false;
+            this.cartDataGridView.AutoGenerateColumns = false;
+            this.cartDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cartDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.basePriceDataGridViewTextBoxColumn,
             this.resultPriceDataGridViewTextBoxColumn,
             this.typeDataGridViewTextBoxColumn});
-            this.ProductDataGridView.DataSource = this.productBindingSource;
-            this.ProductDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProductDataGridView.Location = new System.Drawing.Point(3, 16);
-            this.ProductDataGridView.Name = "ProductDataGridView";
-            this.ProductDataGridView.ReadOnly = true;
-            this.ProductDataGridView.Size = new System.Drawing.Size(263, 202);
-            this.ProductDataGridView.TabIndex = 0;
-            // 
-            // discountValueDataGridViewTextBoxColumn
-            // 
-            this.discountValueDataGridViewTextBoxColumn.DataPropertyName = "DiscountValue";
-            this.discountValueDataGridViewTextBoxColumn.HeaderText = "Discount Value";
-            this.discountValueDataGridViewTextBoxColumn.MaxInputLength = 5;
-            this.discountValueDataGridViewTextBoxColumn.Name = "discountValueDataGridViewTextBoxColumn";
-            this.discountValueDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoryOfProductDataGridViewTextBoxColumn
-            // 
-            this.categoryOfProductDataGridViewTextBoxColumn.DataPropertyName = "CategoryOfProduct";
-            this.categoryOfProductDataGridViewTextBoxColumn.HeaderText = "Category of product";
-            this.categoryOfProductDataGridViewTextBoxColumn.Name = "categoryOfProductDataGridViewTextBoxColumn";
-            this.categoryOfProductDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDiscountBindingSource
-            // 
-            this.iDiscountBindingSource.DataSource = typeof(BusinessLogic.IDiscount);
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(BusinessLogic.Product);
+            this.cartDataGridView.DataSource = this.productBindingSource;
+            this.cartDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cartDataGridView.Location = new System.Drawing.Point(3, 16);
+            this.cartDataGridView.Name = "cartDataGridView";
+            this.cartDataGridView.ReadOnly = true;
+            this.cartDataGridView.Size = new System.Drawing.Size(443, 215);
+            this.cartDataGridView.TabIndex = 0;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -161,62 +96,207 @@
             // basePriceDataGridViewTextBoxColumn
             // 
             this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.HeaderText = "Base price";
             this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
             this.basePriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // resultPriceDataGridViewTextBoxColumn
             // 
             this.resultPriceDataGridViewTextBoxColumn.DataPropertyName = "ResultPrice";
-            this.resultPriceDataGridViewTextBoxColumn.HeaderText = "ResultPrice";
+            this.resultPriceDataGridViewTextBoxColumn.HeaderText = "Result price";
             this.resultPriceDataGridViewTextBoxColumn.Name = "resultPriceDataGridViewTextBoxColumn";
             this.resultPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // typeDataGridViewTextBoxColumn
             // 
             this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Category";
             this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
             this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(BusinessLogic.Product);
+            // 
+            // discountGroupBox
+            // 
+            this.discountGroupBox.Controls.Add(this.resultCheckingDiscountNumberLabel);
+            this.discountGroupBox.Controls.Add(this.discountNumberMaskedTextBox);
+            this.discountGroupBox.Location = new System.Drawing.Point(469, 27);
+            this.discountGroupBox.Name = "discountGroupBox";
+            this.discountGroupBox.Size = new System.Drawing.Size(136, 57);
+            this.discountGroupBox.TabIndex = 1;
+            this.discountGroupBox.TabStop = false;
+            this.discountGroupBox.Text = "Input Discount Code";
+            // 
+            // resultCheckingDiscountNumberLabel
+            // 
+            this.resultCheckingDiscountNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultCheckingDiscountNumberLabel.AutoSize = true;
+            this.resultCheckingDiscountNumberLabel.Location = new System.Drawing.Point(50, 42);
+            this.resultCheckingDiscountNumberLabel.Name = "resultCheckingDiscountNumberLabel";
+            this.resultCheckingDiscountNumberLabel.Size = new System.Drawing.Size(37, 13);
+            this.resultCheckingDiscountNumberLabel.TabIndex = 1;
+            this.resultCheckingDiscountNumberLabel.Text = "Result";
+            this.resultCheckingDiscountNumberLabel.Visible = false;
+            this.resultCheckingDiscountNumberLabel.Click += new System.EventHandler(this.resultCheckingDiscountNumberLabel_Click);
+            // 
+            // discountNumberMaskedTextBox
+            // 
+            this.discountNumberMaskedTextBox.Location = new System.Drawing.Point(53, 19);
+            this.discountNumberMaskedTextBox.Mask = "009";
+            this.discountNumberMaskedTextBox.Name = "discountNumberMaskedTextBox";
+            this.discountNumberMaskedTextBox.Size = new System.Drawing.Size(25, 20);
+            this.discountNumberMaskedTextBox.TabIndex = 0;
+            this.discountNumberMaskedTextBox.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.discountNumberMaskedTextBox_ChangeUICues);
+            // 
+            // addFromProductListButton
+            // 
+            this.addFromProductListButton.Location = new System.Drawing.Point(10, 267);
+            this.addFromProductListButton.Name = "addFromProductListButton";
+            this.addFromProductListButton.Size = new System.Drawing.Size(137, 23);
+            this.addFromProductListButton.TabIndex = 2;
+            this.addFromProductListButton.Text = "Add product from price list";
+            this.addFromProductListButton.UseVisualStyleBackColor = true;
+            this.addFromProductListButton.Click += new System.EventHandler(this.addFromProductListButton_Click);
+            // 
+            // removeFromCartButton
+            // 
+            this.removeFromCartButton.Location = new System.Drawing.Point(153, 267);
+            this.removeFromCartButton.Name = "removeFromCartButton";
+            this.removeFromCartButton.Size = new System.Drawing.Size(143, 23);
+            this.removeFromCartButton.TabIndex = 3;
+            this.removeFromCartButton.Text = "Remove selected from cart";
+            this.removeFromCartButton.UseVisualStyleBackColor = true;
+            this.removeFromCartButton.Click += new System.EventHandler(this.removeFromBasketButton_Click);
+            // 
+            // resultButton
+            // 
+            this.resultButton.Location = new System.Drawing.Point(412, 267);
+            this.resultButton.Name = "resultButton";
+            this.resultButton.Size = new System.Drawing.Size(46, 23);
+            this.resultButton.TabIndex = 4;
+            this.resultButton.Text = "Total";
+            this.resultButton.UseVisualStyleBackColor = true;
+            this.resultButton.Click += new System.EventHandler(this.resultButton_Click);
+            // 
+            // clearCartButton
+            // 
+            this.clearCartButton.Location = new System.Drawing.Point(302, 267);
+            this.clearCartButton.Name = "clearCartButton";
+            this.clearCartButton.Size = new System.Drawing.Size(62, 23);
+            this.clearCartButton.TabIndex = 5;
+            this.clearCartButton.Text = "Clear cart";
+            this.clearCartButton.UseVisualStyleBackColor = true;
+            this.clearCartButton.Click += new System.EventHandler(this.clearCartButton_Click);
+            // 
+            // showDiscountFormButton
+            // 
+            this.showDiscountFormButton.Location = new System.Drawing.Point(472, 90);
+            this.showDiscountFormButton.Name = "showDiscountFormButton";
+            this.showDiscountFormButton.Size = new System.Drawing.Size(133, 23);
+            this.showDiscountFormButton.TabIndex = 6;
+            this.showDiscountFormButton.Text = "Operate with discount list";
+            this.showDiscountFormButton.UseVisualStyleBackColor = true;
+            this.showDiscountFormButton.Visible = false;
+            this.showDiscountFormButton.Click += new System.EventHandler(this.showDiscountFormButton_Click);
+            // 
+            // cartSaveFileDialog
+            // 
+            this.cartSaveFileDialog.CheckFileExists = true;
+            this.cartSaveFileDialog.CreatePrompt = true;
+            this.cartSaveFileDialog.FileName = "your_cart.dss";
+            this.cartSaveFileDialog.InitialDirectory = "C:\\";
+            // 
+            // cartOpenFileDialog
+            // 
+            this.cartOpenFileDialog.FileName = "your_cart.dss";
+            this.cartOpenFileDialog.InitialDirectory = "C:\\";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(617, 24);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "fileMenuStrip";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.loadToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 302);
-            this.Controls.Add(this.ProductGroupBox);
-            this.Controls.Add(this.RemoveDiscountButton);
-            this.Controls.Add(this.AddDiscountButton);
-            this.Controls.Add(this.DiscountGroupBox);
+            this.ClientSize = new System.Drawing.Size(617, 302);
+            this.Controls.Add(this.showDiscountFormButton);
+            this.Controls.Add(this.clearCartButton);
+            this.Controls.Add(this.resultButton);
+            this.Controls.Add(this.removeFromCartButton);
+            this.Controls.Add(this.addFromProductListButton);
+            this.Controls.Add(this.discountGroupBox);
+            this.Controls.Add(this.busketGroupBox);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "Discount System";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.DiscountGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DiscountDataGridView)).EndInit();
-            this.ProductGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iDiscountBindingSource)).EndInit();
+            this.busketGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cartDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            this.discountGroupBox.ResumeLayout(false);
+            this.discountGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox DiscountGroupBox;
-        private System.Windows.Forms.DataGridView DiscountDataGridView;
-        private System.Windows.Forms.Button AddDiscountButton;
-        private System.Windows.Forms.Button RemoveDiscountButton;
-        private System.Windows.Forms.BindingSource iDiscountBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn discountValueDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryOfProductDataGridViewTextBoxColumn;
-        private System.Windows.Forms.GroupBox ProductGroupBox;
-        private System.Windows.Forms.DataGridView ProductDataGridView;
-        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.GroupBox busketGroupBox;
+        private System.Windows.Forms.DataGridView cartDataGridView;
+        private System.Windows.Forms.GroupBox discountGroupBox;
+        private System.Windows.Forms.Label resultCheckingDiscountNumberLabel;
+        private System.Windows.Forms.MaskedTextBox discountNumberMaskedTextBox;
+        private System.Windows.Forms.Button addFromProductListButton;
+        private System.Windows.Forms.Button removeFromCartButton;
+        private System.Windows.Forms.Button resultButton;
+        private System.Windows.Forms.Button clearCartButton;
+        private System.Windows.Forms.Button showDiscountFormButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn basePriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn resultPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.SaveFileDialog cartSaveFileDialog;
+        private System.Windows.Forms.OpenFileDialog cartOpenFileDialog;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
     }
 }
 

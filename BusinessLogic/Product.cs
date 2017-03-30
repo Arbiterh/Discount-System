@@ -48,7 +48,7 @@ namespace BusinessLogic
         /// </summary>
         public double ResultPrice
         {
-            get { return _basePrice; }
+            get { return _resultPrice; }
             set
             {
                 if (value >= 0)
