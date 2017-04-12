@@ -74,7 +74,6 @@
             this.discountListDataGridView.ReadOnly = true;
             this.discountListDataGridView.Size = new System.Drawing.Size(414, 166);
             this.discountListDataGridView.TabIndex = 0;
-            this.discountListDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.discountListDataGridView_CellContentClick);
             // 
             // iDiscountBindingSource
             // 

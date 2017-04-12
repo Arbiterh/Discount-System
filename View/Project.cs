@@ -1,52 +1,66 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
 using BusinessLogic;
+using Newtonsoft.Json;
 
 namespace View
 {
-    public class Project
+    public static class Project
     {
-        //public static void Serialize(object obj, string _filePath)
-        //{
-        //    var writer = new System.Xml.Serialization.XmlSerializer(typeof(object));
-        //    using (var file = System.IO.File.Create(_filePath))
-        //    {
-        //        writer.Serialize(file, obj);
-        //        file.Close();
-        //    }
+        //public static List<IDiscount> DiscountList { get; set; } = new List<IDiscount>();
+        //public static List<Product> PriceList { get; set; } = new List<Product>();
+        //public static List<Product> ProductList { get; set; } = new List<Product>();
 
+        public static List<IDiscount> DiscountList = new List<IDiscount>();
+        public static List<Product> PriceList = new List<Product>();
+        public static List<Product> ProductList = new List<Product>();
 
-            public static void Serialize(List<Product> list , string filePath)
-            { 
-                var serializer = new XmlSerializer(typeof(List<Product>)); 
-                var writer = new StreamWriter(filePath);
-                serializer.Serialize(writer, list);
-                writer.Close();
+        public static string DiscountListFilePath = @"C:\DS_data\DiscountList\DiscountList.dss";
+        public static string PriceListFilePath = @"C:\DS_data\PriceList\PriceList.dss";
+        public static string ProductListFilePath = @"C:\DS_data\ProductList\ProductList.dss";
+
+        public static double ResultPrice = 0;
+        
+        public static void Serialize<T>(ref T container, string filePath)
+        {
+            var serializer = new JsonSerializer
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto,
+                Formatting = Formatting.Indented
+            };
+
+            using (var sw = new StreamWriter(filePath))
+            {
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, container, typeof(T));
+                }
             }
-
-        public static void Serialize(List<IDiscount> list, string filePath)
-        {
-            var serializer = new XmlSerializer(typeof(List<IDiscount>));
-            var writer = new StreamWriter(filePath);
-            serializer.Serialize(writer, list);
-            writer.Close();
         }
 
-        public static void Deserialize(List<Product> list, string filePath)
+        public static void Deserialize<T>(ref T container, string filePath)
         {
-            var serializer = new XmlSerializer(typeof(List<Product>));  
-            var fileStream = new FileStream(filePath, FileMode.OpenOrCreate); 
-            if (fileStream.Length != 0)
-                list = (List<Product>) serializer.Deserialize(fileStream);
+            try
+            {
+                if (container == null)
+                {
+                    throw new ArgumentNullException(nameof(container));
+                }
+                container = JsonConvert.DeserializeObject<T>(File.ReadAllText(filePath), new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Formatting = Formatting.Indented,
+                });
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                return;
+            }
         }
 
-        public static void Deserialize(List<IDiscount> list, string filePath)
-        {
-            var serializer = new XmlSerializer(typeof(List<IDiscount>));
-            var fileStream = new FileStream(filePath, FileMode.OpenOrCreate);
-            if (fileStream.Length != 0)
-                list = (List<IDiscount>)serializer.Deserialize(fileStream);
-        }
+
     }
 }

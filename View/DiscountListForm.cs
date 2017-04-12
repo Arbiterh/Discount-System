@@ -13,7 +13,6 @@ namespace View
 {
     public partial class DiscountListForm : Form
     {
-        private List<IDiscount> list;
         public DiscountListForm()
         {
             InitializeComponent();
@@ -32,6 +31,7 @@ namespace View
         {
             Close();
         }
+
         //дописать ремув, так как сейчас при ремуве выведенные значения индексов и типов
         //скидок остаются старые. Либо придумать иной механизм (например занос типов и
         //индексов в биндингсоурс 
@@ -41,6 +41,7 @@ namespace View
             {
                 //var index = iDiscountBindingSource.IndexOf(iDiscountBindingSource.Current);
                 iDiscountBindingSource.RemoveCurrent();
+                discountListDataGridView.Update();
                 //for (var i = index; i < iDiscountBindingSource.Count; i++)
                 //{
                 //    WriteDiscountInfo(iDiscountBindingSource.List, i);
@@ -82,14 +83,10 @@ namespace View
             }
         }
 
-        private void discountListDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void DiscountListForm_Load(object sender, EventArgs e)
         {
-            Project.Deserialize(list, @"C:\Users\andre\Desktop\discsys.dss");
+            iDiscountBindingSource.DataSource = Project.DiscountList;
+            Project.Deserialize(ref Project.DiscountList, Project.DiscountListFilePath);
         }
     }
 }

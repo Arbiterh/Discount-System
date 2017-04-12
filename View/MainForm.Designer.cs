@@ -37,6 +37,7 @@
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.discountGroupBox = new System.Windows.Forms.GroupBox();
+            this.checkDiscountButton = new System.Windows.Forms.Button();
             this.resultCheckingDiscountNumberLabel = new System.Windows.Forms.Label();
             this.discountNumberMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.addFromProductListButton = new System.Windows.Forms.Button();
@@ -46,7 +47,7 @@
             this.showDiscountFormButton = new System.Windows.Forms.Button();
             this.cartSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.cartOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cartDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.discountGroupBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.fileMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // busketGroupBox
@@ -120,6 +121,7 @@
             // 
             // discountGroupBox
             // 
+            this.discountGroupBox.Controls.Add(this.checkDiscountButton);
             this.discountGroupBox.Controls.Add(this.resultCheckingDiscountNumberLabel);
             this.discountGroupBox.Controls.Add(this.discountNumberMaskedTextBox);
             this.discountGroupBox.Location = new System.Drawing.Point(469, 27);
@@ -129,27 +131,35 @@
             this.discountGroupBox.TabStop = false;
             this.discountGroupBox.Text = "Input Discount Code";
             // 
+            // checkDiscountButton
+            // 
+            this.checkDiscountButton.Location = new System.Drawing.Point(37, 17);
+            this.checkDiscountButton.Name = "checkDiscountButton";
+            this.checkDiscountButton.Size = new System.Drawing.Size(89, 23);
+            this.checkDiscountButton.TabIndex = 10;
+            this.checkDiscountButton.Text = "Check discount";
+            this.checkDiscountButton.UseVisualStyleBackColor = true;
+            this.checkDiscountButton.Click += new System.EventHandler(this.checkDiscountButton_Click);
+            // 
             // resultCheckingDiscountNumberLabel
             // 
             this.resultCheckingDiscountNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resultCheckingDiscountNumberLabel.AutoSize = true;
-            this.resultCheckingDiscountNumberLabel.Location = new System.Drawing.Point(50, 42);
+            this.resultCheckingDiscountNumberLabel.Location = new System.Drawing.Point(3, 42);
             this.resultCheckingDiscountNumberLabel.Name = "resultCheckingDiscountNumberLabel";
             this.resultCheckingDiscountNumberLabel.Size = new System.Drawing.Size(37, 13);
             this.resultCheckingDiscountNumberLabel.TabIndex = 1;
             this.resultCheckingDiscountNumberLabel.Text = "Result";
             this.resultCheckingDiscountNumberLabel.Visible = false;
-            this.resultCheckingDiscountNumberLabel.Click += new System.EventHandler(this.resultCheckingDiscountNumberLabel_Click);
             // 
             // discountNumberMaskedTextBox
             // 
-            this.discountNumberMaskedTextBox.Location = new System.Drawing.Point(53, 19);
+            this.discountNumberMaskedTextBox.Location = new System.Drawing.Point(6, 19);
             this.discountNumberMaskedTextBox.Mask = "009";
             this.discountNumberMaskedTextBox.Name = "discountNumberMaskedTextBox";
             this.discountNumberMaskedTextBox.Size = new System.Drawing.Size(25, 20);
             this.discountNumberMaskedTextBox.TabIndex = 0;
-            this.discountNumberMaskedTextBox.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.discountNumberMaskedTextBox_ChangeUICues);
             // 
             // addFromProductListButton
             // 
@@ -207,22 +217,22 @@
             this.cartSaveFileDialog.CheckFileExists = true;
             this.cartSaveFileDialog.CreatePrompt = true;
             this.cartSaveFileDialog.FileName = "your_cart.dss";
-            this.cartSaveFileDialog.InitialDirectory = "C:\\";
+            this.cartSaveFileDialog.InitialDirectory = "C:\\DS_data\\ProductList";
             // 
             // cartOpenFileDialog
             // 
             this.cartOpenFileDialog.FileName = "your_cart.dss";
-            this.cartOpenFileDialog.InitialDirectory = "C:\\";
+            this.cartOpenFileDialog.InitialDirectory = "C:\\DS_data\\ProductList";
             // 
-            // menuStrip1
+            // fileMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(617, 24);
-            this.menuStrip1.TabIndex = 9;
-            this.menuStrip1.Text = "fileMenuStrip";
+            this.fileMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.fileMenuStrip.Name = "fileMenuStrip";
+            this.fileMenuStrip.Size = new System.Drawing.Size(617, 24);
+            this.fileMenuStrip.TabIndex = 9;
+            this.fileMenuStrip.Text = "fileMenuStrip";
             // 
             // fileToolStripMenuItem
             // 
@@ -236,14 +246,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -259,7 +269,7 @@
             this.Controls.Add(this.addFromProductListButton);
             this.Controls.Add(this.discountGroupBox);
             this.Controls.Add(this.busketGroupBox);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.fileMenuStrip);
             this.Name = "MainForm";
             this.Text = "Discount System";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -268,8 +278,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.discountGroupBox.ResumeLayout(false);
             this.discountGroupBox.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.fileMenuStrip.ResumeLayout(false);
+            this.fileMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,10 +303,11 @@
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.SaveFileDialog cartSaveFileDialog;
         private System.Windows.Forms.OpenFileDialog cartOpenFileDialog;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip fileMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.Button checkDiscountButton;
     }
 }
 

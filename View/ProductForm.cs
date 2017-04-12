@@ -18,16 +18,6 @@ namespace View
             InitializeComponent();
         }
 
-        private void ProductForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         public Product Product
         {
             get
@@ -38,34 +28,40 @@ namespace View
                     BasePrice = Convert.ToDouble(basePriceMaskedTextBox.Text)
                 };
                 product.ResultPrice = product.BasePrice;
-                if (foodRadioButton.Checked == true)
-                    product.Type = Category.Food;
-                if (alcoholRadioButton.Checked == true)
-                    product.Type = Category.Alcohol;
-                if (chemistryRadioButton.Checked == true)
-                    product.Type = Category.Chemistry;
+                switch (categoryComboBox.SelectedIndex)
+                {
+                    case 0:
+                        product.Type = Category.Food;
+                        break;
+                    case 1:
+                        product.Type = Category.Alcohol;
+                        break;
+                    case 2:
+                        product.Type = Category.Chemistry;
+                        break;
+                }
                 return product;
             }
         }
 
-        private void foodRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             addButton.Enabled = true;
         }
 
-        private void basePriceMaskedTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void alcoholRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             addButton.Enabled = true;
         }
 
-        private void chemistryRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void basePriceMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
             addButton.Enabled = true;
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

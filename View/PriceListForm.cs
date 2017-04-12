@@ -18,14 +18,7 @@ namespace View
         public PriceListForm()
         {
             InitializeComponent();
-            var priceList = new List<Product>();
-            priceListBindingSource.DataSource = priceList;
-
-//            Serialization.Deserialize(priceList, "priceList.dss");
-            //var reader = new System.Xml.Serialization.XmlSerializer(typeof(List<Product>));
-            //var priceListFile = new System.IO.StreamReader("priceList.dss");
-            //priceList = (List<Product>) reader.Deserialize(priceListFile);
-
+            priceListBindingSource.DataSource = Project.PriceList;
 #if DEBUG
             addToPriceButton.Visible = true;
             removeFromPriceButton.Visible = true;
@@ -34,7 +27,7 @@ namespace View
 
         private void PriceListForm_Load(object sender, EventArgs e)
         {
-            Project.Deserialize(priceList, "priceList.dss");
+            Project.Deserialize(ref Project.ProductList, Project.PriceListFilePath);
         }
 
         private void addFromPriceListToCartButton_Click(object sender, EventArgs e)
@@ -62,6 +55,28 @@ namespace View
             {
                 priceListBindingSource.Add(form.Product);
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            priceSaveFileDialog = new SaveFileDialog();
+            if (!(priceSaveFileDialog.FileName == null ||
+                  priceSaveFileDialog.ShowDialog() == DialogResult.Cancel))
+            {
+                Project.Serialize(ref Project.PriceList, priceSaveFileDialog.FileName);
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            priceOpenFileDialog = new OpenFileDialog();
+            if (!(priceOpenFileDialog.FileName == null ||
+                  priceOpenFileDialog.ShowDialog() == DialogResult.Cancel))
+            {
+                Project.Deserialize(ref Project.PriceList, priceOpenFileDialog.FileName);
+            }
+            priceListBindingSource.DataSource = Project.PriceList;
+            priceListDataGridView.Update();
         }
     }
 }

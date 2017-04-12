@@ -5,6 +5,9 @@
     /// </summary>
     public enum Category
     {
-        All, Food, Alcohol, Chemistry
+        All,
+        Food,
+        Alcohol,
+        Chemistry
     }
 }

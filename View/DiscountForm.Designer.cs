@@ -30,16 +30,13 @@
         {
             this.discountTypeComboBox = new System.Windows.Forms.ComboBox();
             this.categoryGroupBox = new System.Windows.Forms.GroupBox();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.discountValueMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.discountValueLabel = new System.Windows.Forms.Label();
             this.discountValueExplainLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.discountTypeLabel = new System.Windows.Forms.Label();
-            this.foodRadioButton = new System.Windows.Forms.RadioButton();
-            this.alcoholRadioButton = new System.Windows.Forms.RadioButton();
-            this.chemistryRadioButton = new System.Windows.Forms.RadioButton();
-            this.allRadioButton = new System.Windows.Forms.RadioButton();
             this.categoryGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,16 +54,28 @@
             // 
             // categoryGroupBox
             // 
-            this.categoryGroupBox.Controls.Add(this.allRadioButton);
-            this.categoryGroupBox.Controls.Add(this.chemistryRadioButton);
-            this.categoryGroupBox.Controls.Add(this.alcoholRadioButton);
-            this.categoryGroupBox.Controls.Add(this.foodRadioButton);
-            this.categoryGroupBox.Location = new System.Drawing.Point(12, 73);
+            this.categoryGroupBox.Controls.Add(this.categoryComboBox);
+            this.categoryGroupBox.Location = new System.Drawing.Point(12, 65);
             this.categoryGroupBox.Name = "categoryGroupBox";
-            this.categoryGroupBox.Size = new System.Drawing.Size(116, 113);
+            this.categoryGroupBox.Size = new System.Drawing.Size(136, 46);
             this.categoryGroupBox.TabIndex = 7;
             this.categoryGroupBox.TabStop = false;
             this.categoryGroupBox.Text = "Category of Product";
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Items.AddRange(new object[] {
+            "All",
+            "Food",
+            "Alcohol",
+            "Chemistry"});
+            this.categoryComboBox.Location = new System.Drawing.Point(3, 16);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(130, 21);
+            this.categoryComboBox.TabIndex = 0;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
             // discountValueMaskedTextBox
             // 
@@ -75,6 +84,7 @@
             this.discountValueMaskedTextBox.Name = "discountValueMaskedTextBox";
             this.discountValueMaskedTextBox.Size = new System.Drawing.Size(41, 20);
             this.discountValueMaskedTextBox.TabIndex = 9;
+            this.discountValueMaskedTextBox.TextChanged += new System.EventHandler(this.discountValueMaskedTextBox_TextChanged);
             // 
             // discountValueLabel
             // 
@@ -99,7 +109,7 @@
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Enabled = false;
-            this.okButton.Location = new System.Drawing.Point(12, 191);
+            this.okButton.Location = new System.Drawing.Point(12, 117);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 12;
@@ -110,7 +120,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(207, 191);
+            this.cancelButton.Location = new System.Drawing.Point(207, 117);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 13;
@@ -126,56 +136,11 @@
             this.discountTypeLabel.TabIndex = 15;
             this.discountTypeLabel.Text = "Discount type";
             // 
-            // foodRadioButton
-            // 
-            this.foodRadioButton.AutoSize = true;
-            this.foodRadioButton.Location = new System.Drawing.Point(6, 42);
-            this.foodRadioButton.Name = "foodRadioButton";
-            this.foodRadioButton.Size = new System.Drawing.Size(49, 17);
-            this.foodRadioButton.TabIndex = 0;
-            this.foodRadioButton.Text = "Food";
-            this.foodRadioButton.UseVisualStyleBackColor = true;
-            this.foodRadioButton.CheckedChanged += new System.EventHandler(this.foodRadioButton_CheckedChanged);
-            // 
-            // alcoholRadioButton
-            // 
-            this.alcoholRadioButton.AutoSize = true;
-            this.alcoholRadioButton.Location = new System.Drawing.Point(6, 65);
-            this.alcoholRadioButton.Name = "alcoholRadioButton";
-            this.alcoholRadioButton.Size = new System.Drawing.Size(60, 17);
-            this.alcoholRadioButton.TabIndex = 1;
-            this.alcoholRadioButton.Text = "Alcohol";
-            this.alcoholRadioButton.UseVisualStyleBackColor = true;
-            this.alcoholRadioButton.CheckedChanged += new System.EventHandler(this.alcoholRadioButton_CheckedChanged);
-            // 
-            // chemistryRadioButton
-            // 
-            this.chemistryRadioButton.AutoSize = true;
-            this.chemistryRadioButton.Location = new System.Drawing.Point(6, 88);
-            this.chemistryRadioButton.Name = "chemistryRadioButton";
-            this.chemistryRadioButton.Size = new System.Drawing.Size(70, 17);
-            this.chemistryRadioButton.TabIndex = 2;
-            this.chemistryRadioButton.Text = "Chemistry";
-            this.chemistryRadioButton.UseVisualStyleBackColor = true;
-            this.chemistryRadioButton.CheckedChanged += new System.EventHandler(this.chemistryRadioButton_CheckedChanged);
-            // 
-            // allRadioButton
-            // 
-            this.allRadioButton.AutoSize = true;
-            this.allRadioButton.Location = new System.Drawing.Point(6, 19);
-            this.allRadioButton.Name = "allRadioButton";
-            this.allRadioButton.Size = new System.Drawing.Size(36, 17);
-            this.allRadioButton.TabIndex = 3;
-            this.allRadioButton.TabStop = true;
-            this.allRadioButton.Text = "All";
-            this.allRadioButton.UseVisualStyleBackColor = true;
-            this.allRadioButton.CheckedChanged += new System.EventHandler(this.allRadioButton_CheckedChanged);
-            // 
             // DiscountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 226);
+            this.ClientSize = new System.Drawing.Size(294, 150);
             this.Controls.Add(this.discountTypeLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -187,7 +152,6 @@
             this.Name = "DiscountForm";
             this.Text = "Discount form";
             this.categoryGroupBox.ResumeLayout(false);
-            this.categoryGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,9 +167,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label discountTypeLabel;
-        private System.Windows.Forms.RadioButton allRadioButton;
-        private System.Windows.Forms.RadioButton chemistryRadioButton;
-        private System.Windows.Forms.RadioButton alcoholRadioButton;
-        private System.Windows.Forms.RadioButton foodRadioButton;
+        private System.Windows.Forms.ComboBox categoryComboBox;
     }
 }

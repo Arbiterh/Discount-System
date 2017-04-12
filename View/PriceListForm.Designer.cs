@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.priceListGroupBox = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.priceListDataGridView = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,39 +40,46 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.addToPriceButton = new System.Windows.Forms.Button();
             this.removeFromPriceButton = new System.Windows.Forms.Button();
+            this.fileMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.priceSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.priceOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.priceListGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).BeginInit();
+            this.fileMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // priceListGroupBox
             // 
-            this.priceListGroupBox.Controls.Add(this.dataGridView1);
-            this.priceListGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.priceListGroupBox.Controls.Add(this.priceListDataGridView);
+            this.priceListGroupBox.Location = new System.Drawing.Point(12, 27);
             this.priceListGroupBox.Name = "priceListGroupBox";
             this.priceListGroupBox.Size = new System.Drawing.Size(449, 205);
             this.priceListGroupBox.TabIndex = 0;
             this.priceListGroupBox.TabStop = false;
             this.priceListGroupBox.Text = "Price list";
             // 
-            // dataGridView1
+            // priceListDataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.priceListDataGridView.AllowUserToAddRows = false;
+            this.priceListDataGridView.AllowUserToDeleteRows = false;
+            this.priceListDataGridView.AutoGenerateColumns = false;
+            this.priceListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.priceListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.basePriceDataGridViewTextBoxColumn,
             this.resultPriceDataGridViewTextBoxColumn,
             this.typeDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.priceListBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(443, 186);
-            this.dataGridView1.TabIndex = 0;
+            this.priceListDataGridView.DataSource = this.priceListBindingSource;
+            this.priceListDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceListDataGridView.Location = new System.Drawing.Point(3, 16);
+            this.priceListDataGridView.Name = "priceListDataGridView";
+            this.priceListDataGridView.ReadOnly = true;
+            this.priceListDataGridView.Size = new System.Drawing.Size(443, 186);
+            this.priceListDataGridView.TabIndex = 0;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -109,7 +116,7 @@
             // addFromPriceListToCartButton
             // 
             this.addFromPriceListToCartButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.addFromPriceListToCartButton.Location = new System.Drawing.Point(15, 220);
+            this.addFromPriceListToCartButton.Location = new System.Drawing.Point(15, 235);
             this.addFromPriceListToCartButton.Name = "addFromPriceListToCartButton";
             this.addFromPriceListToCartButton.Size = new System.Drawing.Size(110, 23);
             this.addFromPriceListToCartButton.TabIndex = 1;
@@ -120,7 +127,7 @@
             // closeButton
             // 
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(383, 220);
+            this.closeButton.Location = new System.Drawing.Point(383, 235);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 2;
@@ -129,7 +136,7 @@
             // 
             // addToPriceButton
             // 
-            this.addToPriceButton.Location = new System.Drawing.Point(131, 220);
+            this.addToPriceButton.Location = new System.Drawing.Point(131, 235);
             this.addToPriceButton.Name = "addToPriceButton";
             this.addToPriceButton.Size = new System.Drawing.Size(75, 23);
             this.addToPriceButton.TabIndex = 3;
@@ -140,7 +147,7 @@
             // 
             // removeFromPriceButton
             // 
-            this.removeFromPriceButton.Location = new System.Drawing.Point(212, 220);
+            this.removeFromPriceButton.Location = new System.Drawing.Point(212, 235);
             this.removeFromPriceButton.Name = "removeFromPriceButton";
             this.removeFromPriceButton.Size = new System.Drawing.Size(139, 23);
             this.removeFromPriceButton.TabIndex = 4;
@@ -149,30 +156,78 @@
             this.removeFromPriceButton.Visible = false;
             this.removeFromPriceButton.Click += new System.EventHandler(this.removeFromPriceButton_Click);
             // 
+            // fileMenuStrip
+            // 
+            this.fileMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.fileMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.fileMenuStrip.Name = "fileMenuStrip";
+            this.fileMenuStrip.Size = new System.Drawing.Size(475, 24);
+            this.fileMenuStrip.TabIndex = 5;
+            this.fileMenuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.loadToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // priceSaveFileDialog
+            // 
+            this.priceSaveFileDialog.FileName = "priceList.dss";
+            this.priceSaveFileDialog.InitialDirectory = "C:\\DS_data\\PriceList";
+            // 
+            // priceOpenFileDialog
+            // 
+            this.priceOpenFileDialog.FileName = "PriceList.dss";
+            this.priceOpenFileDialog.InitialDirectory = "C:\\DS_data\\PriceList";
+            // 
             // PriceListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 253);
+            this.ClientSize = new System.Drawing.Size(475, 270);
             this.Controls.Add(this.removeFromPriceButton);
             this.Controls.Add(this.addToPriceButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.addFromPriceListToCartButton);
             this.Controls.Add(this.priceListGroupBox);
+            this.Controls.Add(this.fileMenuStrip);
+            this.MainMenuStrip = this.fileMenuStrip;
             this.Name = "PriceListForm";
             this.Text = "Price list form";
             this.Load += new System.EventHandler(this.PriceListForm_Load);
             this.priceListGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceListDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).EndInit();
+            this.fileMenuStrip.ResumeLayout(false);
+            this.fileMenuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox priceListGroupBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView priceListDataGridView;
         private System.Windows.Forms.BindingSource priceListBindingSource;
         private System.Windows.Forms.Button addFromPriceListToCartButton;
         private System.Windows.Forms.Button closeButton;
@@ -182,5 +237,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button addToPriceButton;
         private System.Windows.Forms.Button removeFromPriceButton;
+        private System.Windows.Forms.MenuStrip fileMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog priceSaveFileDialog;
+        private System.Windows.Forms.OpenFileDialog priceOpenFileDialog;
     }
 }

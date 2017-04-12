@@ -30,9 +30,7 @@
         {
             this.basePriceMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.categoryGroupBox = new System.Windows.Forms.GroupBox();
-            this.chemistryRadioButton = new System.Windows.Forms.RadioButton();
-            this.alcoholRadioButton = new System.Windows.Forms.RadioButton();
-            this.foodRadioButton = new System.Windows.Forms.RadioButton();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.basePriceLabel = new System.Windows.Forms.Label();
             this.addButton = new System.Windows.Forms.Button();
@@ -50,52 +48,31 @@
             this.basePriceMaskedTextBox.Size = new System.Drawing.Size(53, 20);
             this.basePriceMaskedTextBox.TabIndex = 1;
             this.basePriceMaskedTextBox.Text = "0000000";
-            this.basePriceMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.basePriceMaskedTextBox_MaskInputRejected);
+            this.basePriceMaskedTextBox.TextChanged += new System.EventHandler(this.basePriceMaskedTextBox_TextChanged);
             // 
             // categoryGroupBox
             // 
-            this.categoryGroupBox.Controls.Add(this.chemistryRadioButton);
-            this.categoryGroupBox.Controls.Add(this.alcoholRadioButton);
-            this.categoryGroupBox.Controls.Add(this.foodRadioButton);
+            this.categoryGroupBox.Controls.Add(this.categoryComboBox);
             this.categoryGroupBox.Location = new System.Drawing.Point(12, 61);
             this.categoryGroupBox.Name = "categoryGroupBox";
-            this.categoryGroupBox.Size = new System.Drawing.Size(116, 98);
+            this.categoryGroupBox.Size = new System.Drawing.Size(116, 44);
             this.categoryGroupBox.TabIndex = 3;
             this.categoryGroupBox.TabStop = false;
             this.categoryGroupBox.Text = "Category of Product";
             // 
-            // chemistryRadioButton
+            // categoryComboBox
             // 
-            this.chemistryRadioButton.AutoSize = true;
-            this.chemistryRadioButton.Location = new System.Drawing.Point(6, 66);
-            this.chemistryRadioButton.Name = "chemistryRadioButton";
-            this.chemistryRadioButton.Size = new System.Drawing.Size(70, 17);
-            this.chemistryRadioButton.TabIndex = 2;
-            this.chemistryRadioButton.Text = "Chemistry";
-            this.chemistryRadioButton.UseVisualStyleBackColor = true;
-            this.chemistryRadioButton.CheckedChanged += new System.EventHandler(this.chemistryRadioButton_CheckedChanged);
-            // 
-            // alcoholRadioButton
-            // 
-            this.alcoholRadioButton.AutoSize = true;
-            this.alcoholRadioButton.Location = new System.Drawing.Point(6, 43);
-            this.alcoholRadioButton.Name = "alcoholRadioButton";
-            this.alcoholRadioButton.Size = new System.Drawing.Size(60, 17);
-            this.alcoholRadioButton.TabIndex = 1;
-            this.alcoholRadioButton.Text = "Alcohol";
-            this.alcoholRadioButton.UseVisualStyleBackColor = true;
-            this.alcoholRadioButton.CheckedChanged += new System.EventHandler(this.alcoholRadioButton_CheckedChanged);
-            // 
-            // foodRadioButton
-            // 
-            this.foodRadioButton.AutoSize = true;
-            this.foodRadioButton.Location = new System.Drawing.Point(6, 20);
-            this.foodRadioButton.Name = "foodRadioButton";
-            this.foodRadioButton.Size = new System.Drawing.Size(49, 17);
-            this.foodRadioButton.TabIndex = 0;
-            this.foodRadioButton.Text = "Food";
-            this.foodRadioButton.UseVisualStyleBackColor = true;
-            this.foodRadioButton.CheckedChanged += new System.EventHandler(this.foodRadioButton_CheckedChanged);
+            this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Items.AddRange(new object[] {
+            "Food",
+            "Alcohol",
+            "Chemistry"});
+            this.categoryComboBox.Location = new System.Drawing.Point(3, 16);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(110, 21);
+            this.categoryComboBox.TabIndex = 0;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
             // nameLabel
             // 
@@ -119,7 +96,7 @@
             // 
             this.addButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.addButton.Enabled = false;
-            this.addButton.Location = new System.Drawing.Point(12, 165);
+            this.addButton.Location = new System.Drawing.Point(12, 111);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 7;
@@ -131,7 +108,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(148, 166);
+            this.cancelButton.Location = new System.Drawing.Point(148, 112);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 8;
@@ -144,6 +121,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(148, 20);
             this.nameTextBox.TabIndex = 9;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // basePriceExplainLabel
             // 
@@ -158,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 197);
+            this.ClientSize = new System.Drawing.Size(235, 147);
             this.Controls.Add(this.basePriceExplainLabel);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.cancelButton);
@@ -169,9 +147,7 @@
             this.Controls.Add(this.basePriceMaskedTextBox);
             this.Name = "ProductForm";
             this.Text = "Product form";
-            this.Load += new System.EventHandler(this.ProductForm_Load);
             this.categoryGroupBox.ResumeLayout(false);
-            this.categoryGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,14 +156,12 @@
         #endregion
         private System.Windows.Forms.MaskedTextBox basePriceMaskedTextBox;
         private System.Windows.Forms.GroupBox categoryGroupBox;
-        private System.Windows.Forms.RadioButton chemistryRadioButton;
-        private System.Windows.Forms.RadioButton alcoholRadioButton;
-        private System.Windows.Forms.RadioButton foodRadioButton;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label basePriceLabel;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label basePriceExplainLabel;
+        private System.Windows.Forms.ComboBox categoryComboBox;
     }
 }

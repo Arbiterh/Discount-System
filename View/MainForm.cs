@@ -13,18 +13,17 @@ namespace View
 {
     public partial class MainForm : Form
     {
-//        private IDiscount _discount;
-        private List<Product> _productList;
+        private IDiscount _discount;
+//        private List<Product> productList;
 
         public MainForm()
         {
             InitializeComponent();
+            productBindingSource.DataSource = Project.ProductList;
 //            _productList = new List<Product>();
-            productBindingSource.DataSource = _productList;
-        
-            #if DEBUG
+#if DEBUG
             showDiscountFormButton.Visible = true;
-            #endif
+#endif
         }
 
         private void addFromProductListButton_Click(object sender, EventArgs e)
@@ -41,7 +40,6 @@ namespace View
             var form = new DiscountListForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-
             }
         }
 
@@ -62,50 +60,13 @@ namespace View
             productBindingSource.Clear();
         }
 
-        private void resultCheckingDiscountNumberLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-        
-      //  private void discountNumberMaskedTextBox_ModifiedChanged(object sender, EventArgs e)
-      //  {
-      //      var form = new DiscountListForm();
-      //      var index = Convert.ToInt32(discountNumberMaskedTextBox.Text);
-      //      if (form.iDiscountBindingSource[index] != null)
-      //      {
-      //          resultCheckingDiscountNumberLabel.Text = @"Ok";
-      ////          _discount = form.iDiscountBindingSource[index];
-      //      }
-      //      else
-      //      {
-      //          resultCheckingDiscountNumberLabel.Text = @"Wrong code";
-      //      }
-      //      resultCheckingDiscountNumberLabel.Visible = true;
-      //  }
-
-        private void discountNumberMaskedTextBox_ChangeUICues(object sender, UICuesEventArgs e)
-        {
-            var form = new DiscountListForm();
-            var index = Convert.ToInt32(discountNumberMaskedTextBox.Text);
-            if (form.iDiscountBindingSource[index] != null)
-            {
-                resultCheckingDiscountNumberLabel.Text = @"Ok";
-                //          _discount = form.iDiscountBindingSource[index];
-            }
-            else
-            {
-                resultCheckingDiscountNumberLabel.Text = @"Wrong code";
-            }
-            resultCheckingDiscountNumberLabel.Visible = true;
-        }
-
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cartSaveFileDialog = new SaveFileDialog();
             if (!(cartSaveFileDialog.FileName == null ||
                   cartSaveFileDialog.ShowDialog() == DialogResult.Cancel))
             {
-                Project.Serialize(_productList, cartSaveFileDialog.FileName);
+                Project.Serialize(ref Project.ProductList, cartSaveFileDialog.FileName);
             }
         }
 
@@ -115,13 +76,48 @@ namespace View
             if (!(cartOpenFileDialog.FileName == null ||
                   cartOpenFileDialog.ShowDialog() == DialogResult.Cancel))
             {
-                Project.Deserialize(_productList, cartOpenFileDialog.FileName);
+                Project.Deserialize(ref Project.ProductList, cartOpenFileDialog.FileName);
             }
+            productBindingSource.DataSource = Project.ProductList;
+            cartDataGridView.Update();
         }
 
         private void resultButton_Click(object sender, EventArgs e)
         {
-//            foreach ()
+            Project.ResultPrice = 0;
+            foreach (var product in Project.ProductList)
+            {
+                _discount.DoDiscount(product);
+                Project.ResultPrice += product.ResultPrice;
+            }
+            var form = new ResultPriceForm();
+            form.Show(this);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            productBindingSource.DataSource = Project.ProductList;
+        }
+
+        private void checkDiscountButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var index = Convert.ToInt32(discountNumberMaskedTextBox.Text);
+                if (Project.DiscountList[index] != null)
+                {
+                    resultCheckingDiscountNumberLabel.Text = @"Ok";
+                    _discount = Project.DiscountList[index];
+                }
+                else
+                    resultCheckingDiscountNumberLabel.Text = @"Wrong code";
+                resultCheckingDiscountNumberLabel.Visible = true;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                resultCheckingDiscountNumberLabel.Text = @"Wrong code";
+                resultCheckingDiscountNumberLabel.Visible = true;
+            }
         }
     }
 }
