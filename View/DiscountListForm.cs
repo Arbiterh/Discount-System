@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
 
@@ -29,6 +22,7 @@ namespace View
 
         private void closeButton_Click(object sender, EventArgs e)
         {
+            Project.Serialize(ref Project.DiscountList, Project.DiscountListFilePath);
             Close();
         }
 
@@ -39,17 +33,16 @@ namespace View
         {
             try
             {
-                //var index = iDiscountBindingSource.IndexOf(iDiscountBindingSource.Current);
                 iDiscountBindingSource.RemoveCurrent();
-                discountListDataGridView.Update();
-                //for (var i = index; i < iDiscountBindingSource.Count; i++)
-                //{
-                //    WriteDiscountInfo(iDiscountBindingSource.List, i);
-                //}
+                var i = 0;
+                foreach (var discount in Project.DiscountList)
+                {
+                    WriteDiscountInfo(discount, i);
+                    i++;
+                }
             }
-            catch (System.InvalidOperationException)
+            catch (InvalidOperationException)
             {
-                return;
             }
         }
 
@@ -85,8 +78,8 @@ namespace View
 
         private void DiscountListForm_Load(object sender, EventArgs e)
         {
-            iDiscountBindingSource.DataSource = Project.DiscountList;
             Project.Deserialize(ref Project.DiscountList, Project.DiscountListFilePath);
+            iDiscountBindingSource.DataSource = Project.DiscountList;
         }
     }
 }

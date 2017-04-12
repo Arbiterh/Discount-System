@@ -1,12 +1,5 @@
 ﻿using BusinessLogic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
@@ -14,13 +7,10 @@ namespace View
     public partial class MainForm : Form
     {
         private IDiscount _discount;
-//        private List<Product> productList;
 
         public MainForm()
         {
             InitializeComponent();
-            productBindingSource.DataSource = Project.ProductList;
-//            _productList = new List<Product>();
 #if DEBUG
             showDiscountFormButton.Visible = true;
 #endif
@@ -38,9 +28,7 @@ namespace View
         private void showDiscountFormButton_Click(object sender, EventArgs e)
         {
             var form = new DiscountListForm();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-            }
+            form.Show(this);
         }
 
         private void removeFromBasketButton_Click(object sender, EventArgs e)
@@ -49,9 +37,8 @@ namespace View
             {
                 productBindingSource.RemoveCurrent();
             }
-            catch (System.InvalidOperationException)
+            catch (InvalidOperationException)
             {
-                return;
             }
         }
 
@@ -123,10 +110,7 @@ namespace View
 }
 
 /*TO DO LIST:
- * 1. реализовать грамотное отображение типов скидки и их айди на дискаунтлист форме
- * 2. реализовать обращение к скидке с дискаунт листа на форме мейн
  * 3. реализовать нормальную проверку на включение кнопки на форме добавления скидки +
  * обработать там эксепшен на значение процентной скидки
- * 4. реализовать (де)сериализацию (прайс, скидки, и корзина с выбором куда), сохранение т.е.
  * 5. (Желательно) запилить кнопки рандома
  */

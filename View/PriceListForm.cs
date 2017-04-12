@@ -1,12 +1,4 @@
-﻿using BusinessLogic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace View
@@ -18,7 +10,6 @@ namespace View
         public PriceListForm()
         {
             InitializeComponent();
-            priceListBindingSource.DataSource = Project.PriceList;
 #if DEBUG
             addToPriceButton.Visible = true;
             removeFromPriceButton.Visible = true;
@@ -27,13 +18,13 @@ namespace View
 
         private void PriceListForm_Load(object sender, EventArgs e)
         {
-            Project.Deserialize(ref Project.ProductList, Project.PriceListFilePath);
+            Project.Deserialize(ref Project.PriceList, Project.PriceListFilePath);
+            priceListBindingSource.DataSource = Project.PriceList;
         }
 
         private void addFromPriceListToCartButton_Click(object sender, EventArgs e)
         {
             Product = priceListBindingSource.Current;
-//            MainForm.productBindingSource.Add(priceListBindingSource.Current);
         }
 
         private void removeFromPriceButton_Click(object sender, EventArgs e)
@@ -42,9 +33,8 @@ namespace View
             {
                 priceListBindingSource.RemoveCurrent();
             }
-            catch (System.InvalidOperationException)
+            catch (InvalidOperationException)
             {
-                return;
             }
         }
 

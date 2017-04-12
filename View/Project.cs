@@ -8,10 +8,6 @@ namespace View
 {
     public static class Project
     {
-        //public static List<IDiscount> DiscountList { get; set; } = new List<IDiscount>();
-        //public static List<Product> PriceList { get; set; } = new List<Product>();
-        //public static List<Product> ProductList { get; set; } = new List<Product>();
-
         public static List<IDiscount> DiscountList = new List<IDiscount>();
         public static List<Product> PriceList = new List<Product>();
         public static List<Product> ProductList = new List<Product>();
@@ -30,7 +26,6 @@ namespace View
                 TypeNameHandling = TypeNameHandling.Auto,
                 Formatting = Formatting.Indented
             };
-
             using (var sw = new StreamWriter(filePath))
             {
                 using (JsonWriter writer = new JsonTextWriter(sw))
@@ -55,12 +50,9 @@ namespace View
                     Formatting = Formatting.Indented,
                 });
             }
-            catch (System.IO.FileNotFoundException)
+            catch (FileNotFoundException)
             {
-                return;
             }
         }
-
-
     }
 }

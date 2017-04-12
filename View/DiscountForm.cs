@@ -1,12 +1,5 @@
 ﻿using BusinessLogic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
@@ -16,11 +9,6 @@ namespace View
     public partial class DiscountForm : Form
     {
         public DiscountForm()
-        {
-            InitializeComponent();
-        }
-
-        public DiscountForm(IDiscount discount)
         {
             InitializeComponent();
         }
@@ -118,40 +106,44 @@ namespace View
                 discountValueExplainLabel.Text = @"Input int number from 0 to 99999";
             }
             discountValueExplainLabel.Visible = true;
-//            if (DiscountIsCorrect())
+            if (DiscountIsCorrect())
                 okButton.Enabled = true;
         }
 
         private bool DiscountIsCorrect()
         {
-            switch (discountTypeComboBox.SelectedIndex)
-            {
-                case -1:
-                    return false;
-                case 0:
-                    if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0 || 
-                        Convert.ToInt32(discountValueMaskedTextBox.Text) > 100) return false;
-                    break;
-                case 1:
-                    if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0) return false;
-                    break;
-            }
-            return categoryComboBox.SelectedIndex != -1;
-        }
+            //switch (discountTypeComboBox.SelectedIndex)
+            //{
+            //    case -1:
+            //        return false;
+            //    case 0:
+            //        if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0 || 
+            //            Convert.ToInt32(discountValueMaskedTextBox.Text) > 100) return false;
+            //        break;
+            //    case 1:
+            //        if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0) return false;
+            //        break;
+            //}
+            //return categoryComboBox.SelectedIndex != -1;
 
-        private void OkButton_Click(object sender, EventArgs e)
-        {
+            if (Discount is PercentDiscount)
+                if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0 ||
+                    Convert.ToInt32(discountValueMaskedTextBox.Text) > 100) return false;
+            else if (Discount is SertificateDiscount)
+                    if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0) return false;
+            return true;
+
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-//            if (DiscountIsCorrect())
+            if (DiscountIsCorrect())
                 okButton.Enabled = true;
         }
 
         private void discountValueMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
-//            if (DiscountIsCorrect())
+            if (DiscountIsCorrect())
                 okButton.Enabled = true;
         }
     }
