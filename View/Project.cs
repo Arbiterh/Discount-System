@@ -16,8 +16,16 @@ namespace View
         public static string PriceListFilePath = @"C:\DS_data\PriceList\PriceList.dss";
         public static string ProductListFilePath = @"C:\DS_data\ProductList\ProductList.dss";
 
+        /// <summary>
+        /// Суммарная цена товаров в корзине с учётом скидки
+        /// </summary>
         public static double ResultPrice = 0;
-        
+        /// <summary>
+        /// Найденная в списке скидка для рассчета Суммарная цена товаров в корзине
+        /// </summary>
+        public static IDiscount Discount;
+        public static readonly Random Rnd = new Random();
+
         public static void Serialize<T>(ref T container, string filePath)
         {
             var serializer = new JsonSerializer

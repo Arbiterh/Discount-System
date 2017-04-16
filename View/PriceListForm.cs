@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace View
 {
@@ -11,6 +12,7 @@ namespace View
         {
             InitializeComponent();
 #if DEBUG
+            randomButton.Visible = true;
             addToPriceButton.Visible = true;
             removeFromPriceButton.Visible = true;
 #endif
@@ -29,13 +31,8 @@ namespace View
 
         private void removeFromPriceButton_Click(object sender, EventArgs e)
         {
-            try
-            {
+            if (priceListBindingSource.Current != null)
                 priceListBindingSource.RemoveCurrent();
-            }
-            catch (InvalidOperationException)
-            {
-            }
         }
 
         private void addToPriceButton_Click(object sender, EventArgs e)
@@ -67,6 +64,34 @@ namespace View
             }
             priceListBindingSource.DataSource = Project.PriceList;
             priceListDataGridView.Update();
+        }
+
+        private void randomButton_Click(object sender, EventArgs e)
+        {
+            var product = new Product
+            {
+                BasePrice = Math.Round(Project.Rnd.Next(1, 100000) * Project.Rnd.NextDouble(), 2),
+                Type = (Category)Project.Rnd.Next(1, 4)
+            };
+            product.ResultPrice = product.BasePrice;
+            var numberOfChars = Project.Rnd.Next(20);
+            for (var i = 0; i < numberOfChars; i++)
+            {
+                var symbolCategory = Project.Rnd.Next(3);
+                switch (symbolCategory)
+                {
+                    case 0:
+                        product.Name += Convert.ToChar(Project.Rnd.Next(48, 58)); 
+                        break;
+                    case 1:
+                        product.Name += Convert.ToChar(Project.Rnd.Next(65, 91));
+                        break;
+                    case 2:
+                        product.Name += Convert.ToChar(Project.Rnd.Next(97, 123));
+                        break;
+                }
+            }
+            priceListBindingSource.Add(product);
         }
     }
 }

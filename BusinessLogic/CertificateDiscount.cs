@@ -5,7 +5,7 @@ namespace BusinessLogic
     /// <summary>
     /// Реализация сертификатной скидки
     /// </summary>
-    public class SertificateDiscount : IDiscount
+    public class CertificateDiscount : IDiscount
     {
         /// <summary>
         /// Поле значения скидки, по умолчанию 0

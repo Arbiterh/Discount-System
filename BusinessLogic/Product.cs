@@ -68,8 +68,7 @@ namespace BusinessLogic
             {
                 if (value == Category.All)
                     throw new ArgumentOutOfRangeException();
-                else
-                    _type = value;
+                _type = value;
             }
         }
     }

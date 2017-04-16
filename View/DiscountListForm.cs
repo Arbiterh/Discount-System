@@ -22,27 +22,18 @@ namespace View
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            Project.Serialize(ref Project.DiscountList, Project.DiscountListFilePath);
             Close();
         }
 
-        //дописать ремув, так как сейчас при ремуве выведенные значения индексов и типов
-        //скидок остаются старые. Либо придумать иной механизм (например занос типов и
-        //индексов в биндингсоурс 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            try
+            if (iDiscountBindingSource.Current == null) return;
+            iDiscountBindingSource.RemoveCurrent();
+            var i = 0;
+            foreach (var discount in Project.DiscountList)
             {
-                iDiscountBindingSource.RemoveCurrent();
-                var i = 0;
-                foreach (var discount in Project.DiscountList)
-                {
-                    WriteDiscountInfo(discount, i);
-                    i++;
-                }
-            }
-            catch (InvalidOperationException)
-            {
+                WriteDiscountInfo(discount, i);
+                i++;
             }
         }
 
@@ -70,7 +61,7 @@ namespace View
             {
                 discountListDataGridView[1, index].Value = @"Percent";
             }
-            else if (discount is SertificateDiscount)
+            else if (discount is CertificateDiscount)
             {
                 discountListDataGridView[1, index].Value = @"Sertificate";
             }
@@ -80,6 +71,61 @@ namespace View
         {
             Project.Deserialize(ref Project.DiscountList, Project.DiscountListFilePath);
             iDiscountBindingSource.DataSource = Project.DiscountList;
+            var i = 0;
+            foreach (var discount in Project.DiscountList)
+            {
+                WriteDiscountInfo(discount, i);
+                i++;
+            }
+            discountListDataGridView.Update();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            discountListSaveFileDialog = new SaveFileDialog();
+            if (!(discountListSaveFileDialog.FileName == null ||
+                  discountListSaveFileDialog.ShowDialog() == DialogResult.Cancel))
+            {
+                Project.Serialize(ref Project.DiscountList, discountListSaveFileDialog.FileName);
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            discountListOpenFileDialog = new OpenFileDialog();
+            if (!(discountListOpenFileDialog.FileName == null ||
+                  discountListOpenFileDialog.ShowDialog() == DialogResult.Cancel))
+            {
+                Project.Deserialize(ref Project.DiscountList, discountListOpenFileDialog.FileName);
+            }
+            iDiscountBindingSource.DataSource = Project.DiscountList;
+            var i = 0;
+            foreach (var discount in Project.DiscountList)
+            {
+                WriteDiscountInfo(discount, i);
+                i++;
+            }
+            discountListDataGridView.Update();
+        }
+
+        private void randomButton_Click(object sender, EventArgs e)
+        {
+            switch (Project.Rnd.Next(2))
+            {
+                case 0:
+                    var percentDiscount = new PercentDiscount()
+                        {CategoryOfProduct = (Category) Project.Rnd.Next(4), DiscountValue = Project.Rnd.Next(101)};
+                    iDiscountBindingSource.Add(percentDiscount);
+                    WriteDiscountInfo(percentDiscount, iDiscountBindingSource.Count - 1);
+                    break;
+                case 1:
+                    var certificateDiscount = new CertificateDiscount()
+                        {CategoryOfProduct = (Category)Project.Rnd.Next(4), DiscountValue = Project.Rnd.Next(100000)};
+                    iDiscountBindingSource.Add(certificateDiscount);
+                    WriteDiscountInfo(certificateDiscount, iDiscountBindingSource.Count - 1);
+                    break;
+            }
+            discountListDataGridView.Update();
         }
     }
 }

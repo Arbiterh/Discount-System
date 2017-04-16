@@ -42,6 +42,7 @@
             // 
             // basePriceMaskedTextBox
             // 
+            this.basePriceMaskedTextBox.Enabled = false;
             this.basePriceMaskedTextBox.Location = new System.Drawing.Point(75, 32);
             this.basePriceMaskedTextBox.Mask = "99990.00";
             this.basePriceMaskedTextBox.Name = "basePriceMaskedTextBox";
@@ -63,6 +64,7 @@
             // categoryComboBox
             // 
             this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoryComboBox.Enabled = false;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Items.AddRange(new object[] {
             "Food",

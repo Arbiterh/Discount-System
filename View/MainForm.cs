@@ -1,12 +1,10 @@
-﻿using BusinessLogic;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace View
 {
     public partial class MainForm : Form
     {
-        private IDiscount _discount;
 
         public MainForm()
         {
@@ -33,13 +31,8 @@ namespace View
 
         private void removeFromBasketButton_Click(object sender, EventArgs e)
         {
-            try
-            {
+            if (productBindingSource.Current != null)
                 productBindingSource.RemoveCurrent();
-            }
-            catch (InvalidOperationException)
-            {
-            }
         }
 
         private void clearCartButton_Click(object sender, EventArgs e)
@@ -72,13 +65,22 @@ namespace View
         private void resultButton_Click(object sender, EventArgs e)
         {
             Project.ResultPrice = 0;
-            foreach (var product in Project.ProductList)
+            if (Project.Discount != null)
             {
-                _discount.DoDiscount(product);
-                Project.ResultPrice += product.ResultPrice;
+                foreach (var product in Project.ProductList)
+                {
+                    Project.Discount.DoDiscount(product);
+                    Project.ResultPrice += product.ResultPrice;
+                }
             }
+            else
+                foreach (var product in Project.ProductList)
+                {
+                    Project.ResultPrice += product.ResultPrice;
+                }
             var form = new ResultPriceForm();
             form.Show(this);
+//            NullReferenceException
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -88,29 +90,34 @@ namespace View
 
         private void checkDiscountButton_Click(object sender, EventArgs e)
         {
+            Project.Deserialize(ref Project.DiscountList, Project.DiscountListFilePath);
             try
             {
                 var index = Convert.ToInt32(discountNumberMaskedTextBox.Text);
                 if (Project.DiscountList[index] != null)
                 {
                     resultCheckingDiscountNumberLabel.Text = @"Ok";
-                    _discount = Project.DiscountList[index];
+                    Project.Discount = Project.DiscountList[index];
                 }
                 else
+                {
+                    Project.Discount = null;
                     resultCheckingDiscountNumberLabel.Text = @"Wrong code";
-                resultCheckingDiscountNumberLabel.Visible = true;
+                }
+            resultCheckingDiscountNumberLabel.Visible = true;
             }
             catch (ArgumentOutOfRangeException)
             {
+                Project.Discount = null;
+                resultCheckingDiscountNumberLabel.Text = @"Wrong code";
+                resultCheckingDiscountNumberLabel.Visible = true;
+            }
+            catch (FormatException)
+            {
+                Project.Discount = null;
                 resultCheckingDiscountNumberLabel.Text = @"Wrong code";
                 resultCheckingDiscountNumberLabel.Visible = true;
             }
         }
     }
 }
-
-/*TO DO LIST:
- * 3. реализовать нормальную проверку на включение кнопки на форме добавления скидки +
- * обработать там эксепшен на значение процентной скидки
- * 5. (Желательно) запилить кнопки рандома
- */

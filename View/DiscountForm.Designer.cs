@@ -65,6 +65,7 @@
             // categoryComboBox
             // 
             this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoryComboBox.Enabled = false;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Items.AddRange(new object[] {
             "All",
@@ -79,6 +80,7 @@
             // 
             // discountValueMaskedTextBox
             // 
+            this.discountValueMaskedTextBox.Enabled = false;
             this.discountValueMaskedTextBox.Location = new System.Drawing.Point(87, 39);
             this.discountValueMaskedTextBox.Mask = "009";
             this.discountValueMaskedTextBox.Name = "discountValueMaskedTextBox";

@@ -4,10 +4,9 @@ using System.Windows.Forms;
 
 namespace View
 {
-    //допилить чек результата, сейчас кнопка включается только при выборе радиобаттона,
-    //логика неверна
     public partial class DiscountForm : Form
     {
+
         public DiscountForm()
         {
             InitializeComponent();
@@ -41,7 +40,7 @@ namespace View
                         }
                         return percentDiscount;
                     case 1:
-                        var sertificateDiscount = new SertificateDiscount
+                        var sertificateDiscount = new CertificateDiscount
                         {
                             DiscountValue = Convert.ToInt32(discountValueMaskedTextBox.Text)
                         };
@@ -70,7 +69,7 @@ namespace View
                 {
                     discountTypeComboBox.SelectedIndex = 0;
                 }
-                else if (value is SertificateDiscount)
+                else if (value is CertificateDiscount)
                 {
                     discountTypeComboBox.SelectedIndex = 1;
                 }
@@ -95,56 +94,47 @@ namespace View
 
         private void discountTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            discountValueMaskedTextBox.Enabled = false;
             if (discountTypeComboBox.SelectedIndex == 0)
             {
                 discountValueMaskedTextBox.Mask = @"009";
                 discountValueExplainLabel.Text = @"Input int number from 0 to 100";
+                discountValueMaskedTextBox.Enabled = true;
             }
             if (discountTypeComboBox.SelectedIndex == 1)
             {
                 discountValueMaskedTextBox.Mask = @"00009";
                 discountValueExplainLabel.Text = @"Input int number from 0 to 99999";
+                discountValueMaskedTextBox.Enabled = true;
             }
             discountValueExplainLabel.Visible = true;
-            if (DiscountIsCorrect())
-                okButton.Enabled = true;
-        }
-
-        private bool DiscountIsCorrect()
-        {
-            //switch (discountTypeComboBox.SelectedIndex)
-            //{
-            //    case -1:
-            //        return false;
-            //    case 0:
-            //        if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0 || 
-            //            Convert.ToInt32(discountValueMaskedTextBox.Text) > 100) return false;
-            //        break;
-            //    case 1:
-            //        if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0) return false;
-            //        break;
-            //}
-            //return categoryComboBox.SelectedIndex != -1;
-
-            if (Discount is PercentDiscount)
-                if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0 ||
-                    Convert.ToInt32(discountValueMaskedTextBox.Text) > 100) return false;
-            else if (Discount is SertificateDiscount)
-                    if (Convert.ToInt32(discountValueMaskedTextBox.Text) < 0) return false;
-            return true;
-
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DiscountIsCorrect())
+            if (categoryComboBox.SelectedIndex != -1)
                 okButton.Enabled = true;
         }
 
         private void discountValueMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (DiscountIsCorrect())
-                okButton.Enabled = true;
+            categoryComboBox.Enabled = false;
+            try
+            {
+                if (Discount is PercentDiscount)
+                    if (Convert.ToInt32(discountValueMaskedTextBox.Text) <= 100)
+                        categoryComboBox.Enabled = true;
+                if (Discount is CertificateDiscount)
+                    categoryComboBox.Enabled = true;
+            }
+            catch (FormatException)
+            {
+                categoryComboBox.Enabled = false;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                categoryComboBox.Enabled = false;
+            }
         }
     }
 }

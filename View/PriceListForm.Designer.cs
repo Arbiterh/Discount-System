@@ -46,6 +46,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.priceSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.priceOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.randomButton = new System.Windows.Forms.Button();
             this.priceListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.priceListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).BeginInit();
@@ -191,7 +192,7 @@
             // 
             // priceSaveFileDialog
             // 
-            this.priceSaveFileDialog.FileName = "priceList.dss";
+            this.priceSaveFileDialog.FileName = "PriceList.dss";
             this.priceSaveFileDialog.InitialDirectory = "C:\\DS_data\\PriceList";
             // 
             // priceOpenFileDialog
@@ -199,11 +200,23 @@
             this.priceOpenFileDialog.FileName = "PriceList.dss";
             this.priceOpenFileDialog.InitialDirectory = "C:\\DS_data\\PriceList";
             // 
+            // randomButton
+            // 
+            this.randomButton.Enabled = false;
+            this.randomButton.Location = new System.Drawing.Point(358, 235);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(19, 23);
+            this.randomButton.TabIndex = 6;
+            this.randomButton.Text = "Rnd";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            // 
             // PriceListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(475, 270);
+            this.Controls.Add(this.randomButton);
             this.Controls.Add(this.removeFromPriceButton);
             this.Controls.Add(this.addToPriceButton);
             this.Controls.Add(this.closeButton);
@@ -243,5 +256,6 @@
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog priceSaveFileDialog;
         private System.Windows.Forms.OpenFileDialog priceOpenFileDialog;
+        private System.Windows.Forms.Button randomButton;
     }
 }
