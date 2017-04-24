@@ -51,7 +51,8 @@ namespace BusinessLogic
             get { return _resultPrice; }
             set
             {
-                if (value >= 0)
+                if (value >= 0 && value <= BasePrice)
+//                if (value >= 0)
                     _resultPrice = value;
                 else
                     throw new ArgumentOutOfRangeException();
