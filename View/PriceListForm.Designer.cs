@@ -202,7 +202,6 @@
             // 
             // randomButton
             // 
-            this.randomButton.Enabled = false;
             this.randomButton.Location = new System.Drawing.Point(358, 235);
             this.randomButton.Name = "randomButton";
             this.randomButton.Size = new System.Drawing.Size(19, 23);

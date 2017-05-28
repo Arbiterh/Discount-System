@@ -21,10 +21,13 @@ namespace View
         /// </summary>
         public static double ResultPrice = 0;
         /// <summary>
-        /// Найденная в списке скидка для рассчета Суммарная цена товаров в корзине
+        /// Найденная в списке скидка для рассчета cуммарной цены товаров в корзине
         /// </summary>
         public static IDiscount Discount;
         public static readonly Random Rnd = new Random();
+
+        public static bool OkButtonEnabledDiscountForm = false;
+        public static bool AddButtonEnabledProductForm = false;
 
         public static void Serialize<T>(ref T container, string filePath)
         {

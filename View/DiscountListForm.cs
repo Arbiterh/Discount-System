@@ -46,7 +46,7 @@ namespace View
         {
             if (iDiscountBindingSource.Current == null) return;
             var form = new DiscountForm
-                {Discount = iDiscountBindingSource.Current as IDiscount};
+            { Discount = iDiscountBindingSource.Current as IDiscount };
             if (form.ShowDialog() != DialogResult.OK) return;
             var index = iDiscountBindingSource.IndexOf(iDiscountBindingSource.Current);
             iDiscountBindingSource.Insert(index, form.Discount);

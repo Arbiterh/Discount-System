@@ -80,6 +80,7 @@ namespace View
                 }
             var form = new ResultPriceForm();
             form.Show(this);
+            productBindingSource.ResetBindings(false);
 //            NullReferenceException
         }
 
