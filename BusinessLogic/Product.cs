@@ -37,7 +37,7 @@ namespace BusinessLogic
             set
             {
                 if (value > 0)
-                    _basePrice = Math.Round(value, 2);
+                    _basePrice = value;
                 else
                     throw new ArgumentOutOfRangeException();
             }
@@ -53,7 +53,7 @@ namespace BusinessLogic
             {
                 if (value >= 0 && value <= BasePrice)
 //                if (value >= 0)
-                    _resultPrice = Math.Round(value, 2);
+                    _resultPrice = value;
                 else
                     throw new ArgumentOutOfRangeException();
             }
