@@ -208,6 +208,7 @@
             this.randomButton.TabIndex = 6;
             this.randomButton.Text = "Rnd";
             this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Visible = false;
             this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
             // 
             // PriceListForm
