@@ -209,7 +209,6 @@
             this.showDiscountFormButton.TabIndex = 6;
             this.showDiscountFormButton.Text = "Operate with discount list";
             this.showDiscountFormButton.UseVisualStyleBackColor = true;
-            this.showDiscountFormButton.Visible = false;
             this.showDiscountFormButton.Click += new System.EventHandler(this.showDiscountFormButton_Click);
             // 
             // cartSaveFileDialog

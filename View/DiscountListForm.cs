@@ -4,11 +4,20 @@ using BusinessLogic;
 
 namespace View
 {
+    /// <summary>
+    /// Форма для работы с листом скидок
+    /// </summary>
     public partial class DiscountListForm : Form
     {
+        /// <summary>
+        /// Стандартный конструктор
+        /// </summary>
         public DiscountListForm()
         {
             InitializeComponent();
+#if DEBUG
+                randomButton.Visible = true;
+#endif
         }
 
         private void addButton_Click(object sender, EventArgs e)

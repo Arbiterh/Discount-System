@@ -4,12 +4,21 @@ using BusinessLogic;
 
 namespace View.Controls
 {
+    /// <summary>
+    /// Контрол, содержащий на себе элементы для добавления экземпляра продукта
+    /// </summary>
     public partial class ProductControl : UserControl
     {
+        /// <summary>
+        /// Стандартный конструктор
+        /// </summary>
         public ProductControl()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Свойство, хранящее экземпляр продукта
+        /// </summary>
         public Product Product
         {
             get

@@ -5,17 +5,24 @@ using View.Controls;
 
 namespace View
 {
+    /// <summary>
+    /// Форма для редактирования экземпляра скидки
+    /// </summary>
     public partial class DiscountForm : Form
     {
         private readonly DiscountControl _discountControl;
-
+        /// <summary>
+        /// Стандартный конструктор, инициирующий контрол
+        /// </summary>
         public DiscountForm()
         {
             InitializeComponent();
            _discountControl = new DiscountControl();
             Controls.Add(_discountControl);
         }
-
+        /// <summary>
+        /// Свойство скидки, оперирующее с таковым на контроле
+        /// </summary>
         public IDiscount Discount
         {
             get { return _discountControl.Discount; }

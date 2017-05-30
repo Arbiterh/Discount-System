@@ -4,15 +4,23 @@ using System.Windows.Forms;
 
 namespace View.Controls
 {
+    /// <summary>
+    /// Контрол, содержащий на себе элементы для редактирования экземпляра скидки
+    /// </summary>
     public partial class DiscountControl : UserControl
     {
+        /// <summary>
+        /// Стандартный конструктор
+        /// </summary>
         public DiscountControl()
         {
             InitializeComponent();
         }
 
         private bool _readOnly;
-
+        /// <summary>
+        /// Свойство, хранящее экземпляр скидки
+        /// </summary>
         public IDiscount Discount
         {
             get
@@ -93,7 +101,9 @@ namespace View.Controls
                 //add exceptions
             }
         }
-
+        /// <summary>
+        /// Свойство, определяющее тип доступа к контролу
+        /// </summary>
         public bool ReadOnly
         {
             get { return _readOnly; }
