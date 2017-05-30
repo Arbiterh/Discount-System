@@ -39,7 +39,7 @@ namespace BusinessLogic
             if (DiscountValue <= product.BasePrice)
             {
                 product.ResultPrice = product.BasePrice - DiscountValue;
-                DiscountValue -= (int) (product.ResultPrice - product.BasePrice);
+                DiscountValue = 0;
             }
             else
             {
