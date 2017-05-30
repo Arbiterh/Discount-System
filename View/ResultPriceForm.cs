@@ -3,8 +3,14 @@ using System.Windows.Forms;
 
 namespace View
 {
+    /// <summary>
+    /// Форма для отображения итоговой цены всех товаров в корзине с учётом скидки
+    /// </summary>
     public partial class ResultPriceForm : Form
     {
+        /// <summary>
+        /// Стандартный конструктор
+        /// </summary>
         public ResultPriceForm()
         {
             InitializeComponent();

@@ -3,15 +3,17 @@ using System.Windows.Forms;
 
 namespace View
 {
+    /// <summary>
+    /// Главная форма со списком товаров в корзине
+    /// </summary>
     public partial class MainForm : Form
     {
-
+        /// <summary>
+        /// Стандартный конструктор
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-#if DEBUG
-            showDiscountFormButton.Visible = true;
-#endif
         }
 
         private void addFromProductListButton_Click(object sender, EventArgs e)

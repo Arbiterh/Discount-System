@@ -143,7 +143,6 @@
             this.addToPriceButton.TabIndex = 3;
             this.addToPriceButton.Text = "Add position";
             this.addToPriceButton.UseVisualStyleBackColor = true;
-            this.addToPriceButton.Visible = false;
             this.addToPriceButton.Click += new System.EventHandler(this.addToPriceButton_Click);
             // 
             // removeFromPriceButton
@@ -154,7 +153,6 @@
             this.removeFromPriceButton.TabIndex = 4;
             this.removeFromPriceButton.Text = "Remove selected position";
             this.removeFromPriceButton.UseVisualStyleBackColor = true;
-            this.removeFromPriceButton.Visible = false;
             this.removeFromPriceButton.Click += new System.EventHandler(this.removeFromPriceButton_Click);
             // 
             // fileMenuStrip

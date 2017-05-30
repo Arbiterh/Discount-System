@@ -4,17 +4,23 @@ using BusinessLogic;
 
 namespace View
 {
+    /// <summary>
+    /// Форма, оперирующая с прайс-листом
+    /// </summary>
     public partial class PriceListForm : Form
     {
+        /// <summary>
+        /// Свойство, хранящее экземпляр продукта для передачи на главную форму
+        /// </summary>
         public object Product { get; private set; }
-
+        /// <summary>
+        /// Стандартный конструктор
+        /// </summary>
         public PriceListForm()
         {
             InitializeComponent();
 #if DEBUG
             randomButton.Visible = true;
-            addToPriceButton.Visible = true;
-            removeFromPriceButton.Visible = true;
 #endif
         }
 
