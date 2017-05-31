@@ -33,6 +33,5 @@ namespace View
         {
             okButton.Enabled = Project.OkButtonEnabledDiscountForm;
         }
-        
     }
 }

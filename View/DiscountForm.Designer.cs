@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.timerEnabledOk = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // okButton
@@ -53,6 +55,11 @@
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
+            // timerEnabledOk
+            // 
+            this.timerEnabledOk.Enabled = true;
+            this.timerEnabledOk.Tick += new System.EventHandler(this.timerEnabledOk_Tick);
+            // 
             // DiscountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -69,5 +76,6 @@
         #endregion
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Timer timerEnabledOk;
     }
 }
