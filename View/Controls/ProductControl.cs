@@ -81,5 +81,17 @@ namespace View.Controls
                 Project.AddButtonEnabledProductForm = false;
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ProductControl
+            // 
+            this.Name = "ProductControl";
+            this.Size = new System.Drawing.Size(318, 155);
+            this.ResumeLayout(false);
+
+        }
     }
 }

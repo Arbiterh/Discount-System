@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DiscountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DiscountListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,12 @@
     <Compile Include="ResultPriceForm.Designer.cs">
       <DependentUpon>ResultPriceForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\DiscountControl.resx">
+      <DependentUpon>DiscountControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProductControl.resx">
+      <DependentUpon>ProductControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DiscountListForm.resx">
       <DependentUpon>DiscountListForm.cs</DependentUpon>
     </EmbeddedResource>

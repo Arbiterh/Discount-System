@@ -160,17 +160,5 @@ namespace View.Controls
                 categoryComboBox.Enabled = false;
             }
         }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // DiscountControl
-            // 
-            this.Name = "DiscountControl";
-            this.Size = new System.Drawing.Size(400, 171);
-            this.ResumeLayout(false);
-
-        }
     }
 }
