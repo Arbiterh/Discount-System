@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.priceListGroupBox = new System.Windows.Forms.GroupBox();
             this.priceListDataGridView = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resultPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.addFromPriceListToCartButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.addToPriceButton = new System.Windows.Forms.Button();
@@ -47,10 +42,15 @@
             this.priceSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.priceOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.randomButton = new System.Windows.Forms.Button();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.priceListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.priceListDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).BeginInit();
             this.fileMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // priceListGroupBox
@@ -81,38 +81,6 @@
             this.priceListDataGridView.ReadOnly = true;
             this.priceListDataGridView.Size = new System.Drawing.Size(443, 186);
             this.priceListDataGridView.TabIndex = 0;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // basePriceDataGridViewTextBoxColumn
-            // 
-            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.HeaderText = "Base price";
-            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
-            this.basePriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // resultPriceDataGridViewTextBoxColumn
-            // 
-            this.resultPriceDataGridViewTextBoxColumn.DataPropertyName = "ResultPrice";
-            this.resultPriceDataGridViewTextBoxColumn.HeaderText = "Result price";
-            this.resultPriceDataGridViewTextBoxColumn.Name = "resultPriceDataGridViewTextBoxColumn";
-            this.resultPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceListBindingSource
-            // 
-            this.priceListBindingSource.DataSource = typeof(BusinessLogic.Product);
             // 
             // addFromPriceListToCartButton
             // 
@@ -200,7 +168,6 @@
             // 
             // randomButton
             // 
-            this.randomButton.Enabled = false;
             this.randomButton.Location = new System.Drawing.Point(358, 235);
             this.randomButton.Name = "randomButton";
             this.randomButton.Size = new System.Drawing.Size(19, 23);
@@ -209,6 +176,38 @@
             this.randomButton.UseVisualStyleBackColor = true;
             this.randomButton.Visible = false;
             this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // basePriceDataGridViewTextBoxColumn
+            // 
+            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.HeaderText = "Base price";
+            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
+            this.basePriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // resultPriceDataGridViewTextBoxColumn
+            // 
+            this.resultPriceDataGridViewTextBoxColumn.DataPropertyName = "ResultPrice";
+            this.resultPriceDataGridViewTextBoxColumn.HeaderText = "Result price";
+            this.resultPriceDataGridViewTextBoxColumn.Name = "resultPriceDataGridViewTextBoxColumn";
+            this.resultPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceListBindingSource
+            // 
+            this.priceListBindingSource.DataSource = typeof(BusinessLogic.Product);
             // 
             // PriceListForm
             // 
@@ -228,9 +227,9 @@
             this.Load += new System.EventHandler(this.PriceListForm_Load);
             this.priceListGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.priceListDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).EndInit();
             this.fileMenuStrip.ResumeLayout(false);
             this.fileMenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priceListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

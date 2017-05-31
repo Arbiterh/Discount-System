@@ -254,7 +254,7 @@ namespace View.Controls
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(130, 21);
             this.categoryComboBox.TabIndex = 0;
-            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.discountTypeComboBox_SelectedIndexChanged);
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
             // DiscountControl
             // 
