@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.addButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.timerEnabledAdd = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // addButton
@@ -54,6 +56,11 @@
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
+            // timerEnabledAdd
+            // 
+            this.timerEnabledAdd.Enabled = true;
+            this.timerEnabledAdd.Tick += new System.EventHandler(this.timerEnabledAdd_Tick);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -70,5 +77,6 @@
         #endregion
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Timer timerEnabledAdd;
     }
 }
