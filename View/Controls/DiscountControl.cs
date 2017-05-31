@@ -125,17 +125,47 @@ namespace View.Controls
 
         private void discountTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            discountValueMaskedTextBox.Enabled = false;
+            if (discountTypeComboBox.SelectedIndex == 0)
+            {
+                discountValueMaskedTextBox.Mask = @"009";
+                discountValueExplainLabel.Text = @"Input int number from 0 to 100";
+                discountValueMaskedTextBox.Enabled = true;
+            }
+            if (discountTypeComboBox.SelectedIndex == 1)
+            {
+                discountValueMaskedTextBox.Mask = @"00009";
+                discountValueExplainLabel.Text = @"Input int number from 0 to 99999";
+                discountValueMaskedTextBox.Enabled = true;
+            }
+            discountValueExplainLabel.Visible = true;
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (categoryComboBox.SelectedIndex != -1)
+                Project.OkButtonEnabledDiscountForm = true;
         }
 
         private void discountValueMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            categoryComboBox.Enabled = false;
+            try
+            {
+                if (Discount is PercentDiscount)
+                    if (Convert.ToInt32(discountValueMaskedTextBox.Text) <= 100)
+                        categoryComboBox.Enabled = true;
+                if (Discount is CertificateDiscount)
+                    categoryComboBox.Enabled = true;
+            }
+            catch (FormatException)
+            {
+                categoryComboBox.Enabled = false;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                categoryComboBox.Enabled = false;
+            }
         }
 
         private void InitializeComponent()
@@ -186,6 +216,7 @@ namespace View.Controls
             this.discountValueMaskedTextBox.Name = "discountValueMaskedTextBox";
             this.discountValueMaskedTextBox.Size = new System.Drawing.Size(41, 20);
             this.discountValueMaskedTextBox.TabIndex = 24;
+            this.discountValueMaskedTextBox.TextChanged += new System.EventHandler(this.discountValueMaskedTextBox_TextChanged);
             // 
             // discountTypeComboBox
             // 
@@ -197,6 +228,7 @@ namespace View.Controls
             this.discountTypeComboBox.Name = "discountTypeComboBox";
             this.discountTypeComboBox.Size = new System.Drawing.Size(116, 21);
             this.discountTypeComboBox.TabIndex = 22;
+            this.discountTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.discountTypeComboBox_SelectedIndexChanged);
             // 
             // categoryGroupBox
             // 
@@ -222,6 +254,7 @@ namespace View.Controls
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(130, 21);
             this.categoryComboBox.TabIndex = 0;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.discountTypeComboBox_SelectedIndexChanged);
             // 
             // DiscountControl
             // 
