@@ -55,17 +55,39 @@ namespace View.Controls
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            if (nameTextBox.Text != null && nameTextBox.Text != @"")
+                basePriceMaskedTextBox.Enabled = true;
+            else
+            {
+                basePriceMaskedTextBox.Enabled = false;
+                categoryComboBox.Enabled = false;
+                Project.AddButtonEnabledProductForm = false;
+            }
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (categoryComboBox.SelectedIndex != -1)
+                Project.AddButtonEnabledProductForm = true;
         }
 
         private void basePriceMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Convert.ToDouble(basePriceMaskedTextBox.Text) != 0)
+                    categoryComboBox.Enabled = true;
+                else
+                {
+                    categoryComboBox.Enabled = false;
+                    Project.AddButtonEnabledProductForm = false;
+                }
+            }
+            catch (FormatException)
+            {
+                categoryComboBox.Enabled = false;
+                Project.AddButtonEnabledProductForm = false;
+            }
         }
 
         private void InitializeComponent()
